@@ -1,0 +1,17 @@
+{% extends "encyc/layout.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="alert alert-primary" role="alert">
+    Please refer to our <a href="{% url 'help' %}">markdown guide</a>
+</div>
+<h1 class="text-muted">
+    {{ title }}
+</h1>
+<form enctype="multipart/form-data"method="post">
+    {% csrf_token %}
+    {{ form | crispy }}
+
+    <input type="submit" class="btn btn-outline-success">
+</form>
+{% endblock content %}

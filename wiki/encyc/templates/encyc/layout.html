@@ -1,0 +1,48 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+<html lang="en">
+
+<head>
+    <title>
+        MiniWiki
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="{% static 'encyc/styles.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="row">
+        <div class="sidebar col-lg-2 col-md-3">
+            <h2>Wiki</h2>
+            <div>
+                <form action="{% url 'results' %}" method="GET" class="search">
+                    {{ search }}
+                </form>
+            </div>
+            <div>
+                <a href="{% url 'index' %}">Home</a>
+            </div>
+            <div>
+                <a href="{% url 'new' %}"> Create New Page </a>
+            </div>
+            <div>
+               <a href="{% url 'random' %}">Random Page</a>
+            </div>
+            <div>
+                <a href="{% url 'help' %}">Help?</a>
+            </div>
+
+        </div>
+        <div class="main col-lg-10 col-md-9">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+
+</body>
+
+</html>

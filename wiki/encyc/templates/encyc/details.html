@@ -1,0 +1,12 @@
+{% extends "encyc/layout.html" %}
+{% block content %}
+{% if message %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+{% endif %}
+
+{{ entry | safe }}
+
+<a class="btn btn-outline-info" href="{% url 'edit' title %}">Edit Page</a>
+{% endblock content %}

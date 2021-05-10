@@ -1,0 +1,22 @@
+{% extends "encyc/layout.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="alert alert-primary" role="alert">
+    Please refer to my <a href="{% url 'help' %}">markdown guide</a>
+</div>
+    {% if form.errors %}
+        {% for fields in form %}
+            {% for error in fields.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error | escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+<form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {{ form | crispy }}
+
+    <button type="submit" class="btn btn-outline-success">Submit</button>
+</form>
+{% endblock content %}

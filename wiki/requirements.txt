@@ -1,0 +1,2 @@
+django==3.1.6
+markdown==3.3.3
