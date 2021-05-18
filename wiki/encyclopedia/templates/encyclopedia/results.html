@@ -1,0 +1,21 @@
+{% extends "encyclopedia/layout.html" %}
+{% block content %}
+<h1>
+    Search Results
+</h1>
+{% if message %}
+<div class="danger">
+    {{ message }}
+</div>
+{% endif %}
+<ul>
+
+    {% for result in results %}
+    <li>
+        <a href="{% url 'details' result %}">
+            {{ result }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

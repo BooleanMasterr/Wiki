@@ -1,4 +1,4 @@
-{% extends "encyc/layout.html" %}
+{% extends "encyclopedia/layout.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
 
@@ -8,7 +8,7 @@
 <h1 class="text-muted">
     {{ title }}
 </h1>
-<form enctype="multipart/form-data"method="post">
+<form enctype="multipart/form-data" method="post">
     {% csrf_token %}
     {{ form | crispy }}
 

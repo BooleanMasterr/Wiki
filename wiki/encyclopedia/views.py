@@ -20,7 +20,7 @@ def index(request):
         "entries": entries,
         "search": search,
     }
-    return render(request, "encyc/index.html", context)
+    return render(request, "encyclopedia/index.html", context)
 
 
 def get_page(request, title):
@@ -34,14 +34,14 @@ def get_page(request, title):
         context = {
             "message": "No results found"
         }
-        return render(request, "encyc/details.html", context)
+        return render(request, "encyclopedia/details.html", context)
     context = {
         "entry": converted,
         "title": title,
         "search": search,
     }
 
-    return render(request, "encyc/details.html", context)
+    return render(request, "encyclopedia/details.html", context)
 
 
 def help(request):
@@ -58,7 +58,7 @@ def help(request):
         context["context"][example] = converted
         context["raw"][example] = raw
 
-    return render(request, "encyc/help.html", context)
+    return render(request, "encyclopedia/help.html", context)
 
 
 def create_entry(request):
@@ -80,7 +80,7 @@ def create_entry(request):
         'form': form,
         "search": search,
     }
-    return render(request, "encyc/new.html", context)
+    return render(request, "encyclopedia/new.html", context)
 
 
 def update_entry(request, title):
@@ -107,7 +107,7 @@ def update_entry(request, title):
         "title": title,
         "search": search,
     }
-    return render(request, "encyc/update.html", context)
+    return render(request, "encyclopedia/update.html", context)
 
 
 def random_page(request):
@@ -141,7 +141,7 @@ def get_search_query(request):
                     "results": matches,
                     "search": search,
                 }
-                return render(request, "encyc/results.html", context)
+                return render(request, "encyclopedia/results.html", context)
 
             elif len(matches) == 1 and search_query != matches[0]:
                 context = {
@@ -149,14 +149,14 @@ def get_search_query(request):
                     "search": search,
                 }
 
-                return render(request, "encyc/results.html", context)
+                return render(request, "encyclopedia/results.html", context)
 
             elif len(matches) == 0:
                 context = {
                     "message": "No matching results",
                     "search": search
                 }
-                return render(request, "encyc/results.html", context)
+                return render(request, "encyclopedia/results.html", context)
 
         else:
             return index(request)

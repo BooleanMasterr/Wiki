@@ -1,0 +1,35 @@
+{% extends "encyclopedia/layout.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="main">
+    <h1>
+        Basic Markdown Syntax
+    </h1>
+    <p>
+        Here’s an overview of Markdown syntax that you can use
+    </p>
+    {% for entry, value in context.items %}
+    <div class="content-section">
+        <h2>
+            {{ entry }}
+        </h2>
+        {% for raw_entry, value in raw.items %}
+        {% if raw_entry == entry %}
+        <br>
+        {{ value | linebreaks }}
+        {% endif %}
+        {% endfor %}
+        <pre class="code">
+                <code>
+                    {{ value | safe }}
+                </code>
+            </pre>
+    </div>
+    {% endfor %}
+    <p>
+        Not helpful? Refer to <a href="https://guides.github.com/features/mastering-markdown/">GitHubs markdown
+            Guide</a>
+    </p>
+</div>
+{% endblock content %}
