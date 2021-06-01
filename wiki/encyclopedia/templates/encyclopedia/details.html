@@ -8,5 +8,8 @@
 
 {{ entry | safe }}
 
+{% if message == None%}
 <a class="btn btn-outline-info" href="{% url 'edit' title %}">Edit Page</a>
+{% else %}
+{% endif %}
 {% endblock content %}

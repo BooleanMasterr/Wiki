@@ -25,15 +25,15 @@ def index(request):
 
 def get_page(request, title):
     entry = util.get_entry(title)
-
+    if entry is None:
+        context = {"message": "No results found", "search": search}
+        return render(request, "encyclopedia/details.html", context)
     try:
         converted = md.convert(entry)
 
     except AttributeError:
 
-        context = {
-            "message": "No results found"
-        }
+        context = {"message": "No results found"}
         return render(request, "encyclopedia/details.html", context)
     context = {
         "entry": converted,
@@ -49,7 +49,6 @@ def help(request):
         "context": {},
         "raw": {},
         "search": search,
-
     }
 
     for example in util.list_example():
@@ -69,15 +68,15 @@ def create_entry(request):
 
         if form.is_valid():
 
-            title = form.cleaned_data['title']
-            content = form.cleaned_data['content']
+            title = form.cleaned_data["title"]
+            content = form.cleaned_data["content"]
 
             util.save_entry(title, content)
 
-            return HttpResponseRedirect(f'/wiki/{title}')
+            return HttpResponseRedirect(f"/wiki/{title}")
 
     context = {
-        'form': form,
+        "form": form,
         "search": search,
     }
     return render(request, "encyclopedia/new.html", context)
@@ -86,9 +85,7 @@ def create_entry(request):
 def update_entry(request, title):
 
     content = util.get_entry(title)
-    initial = {
-        "content": content
-    }
+    initial = {"content": content}
 
     form = UpdateForm(initial=initial)
 
@@ -97,11 +94,11 @@ def update_entry(request, title):
 
         if form.is_valid():
 
-            content = form.cleaned_data['content']
+            content = form.cleaned_data["content"]
 
             util.save_entry(title=title, content=content)
 
-            return HttpResponseRedirect(reverse('details', args=(title,)))
+            return HttpResponseRedirect(reverse("details", args=(title,)))
     context = {
         "form": form,
         "title": title,
@@ -119,13 +116,13 @@ def random_page(request):
 
 def get_search_query(request):
 
-    if request.method == 'GET':
+    if request.method == "GET":
 
         form = Search(request.GET)
 
         if form.is_valid():
 
-            search_query = form.cleaned_data.get('search').lower()
+            search_query = form.cleaned_data.get("search").lower()
             entries = util.list_entries()
 
             matches = [match for match in entries if search_query in match.lower()]
@@ -152,10 +149,7 @@ def get_search_query(request):
                 return render(request, "encyclopedia/results.html", context)
 
             elif len(matches) == 0:
-                context = {
-                    "message": "No matching results",
-                    "search": search
-                }
+                context = {"message": "No matching results", "search": search}
                 return render(request, "encyclopedia/results.html", context)
 
         else:
