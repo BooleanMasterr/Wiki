@@ -1,3 +1,0 @@
-# Python 
-
- a programming language

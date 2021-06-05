@@ -14,11 +14,6 @@ Python3.7.9 - [Python](https://www.python.org/)
 
 Django3.1.6 
 
-
-### Inspired By 
-
-EDX - [EDX](https://www.edx.org/course/cs50s-web-programming-with-python-and-javascript)
-
-#Wiki
-
 made by BooleanMasterr (github username)
+
+# youtube link - https://www.youtube.com/watch?v=Gbz7JuiDSRQ
